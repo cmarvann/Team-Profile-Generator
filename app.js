@@ -1,18 +1,17 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 
-const Manager = require("./lib/Manager");
-const Engineer = require("./lib/Engineer");
-const Intern = require("./lib/Intern");
-const generateTeam = require("./src/page-template.js");
+const Manager = require("./Develop/lib/Manager");
+const Engineer = require("./Develop/lib/Engineer");
+const Intern = require("./Develop/lib/Intern");
+const generateTeamsite = require("./Develop/utils/generate-teamsite");
 
 const path = require("path");
 
-const OUTPUT_DIR = path.resolve(__dirname, "dist")
+const OUTPUT_DIR = path.resolve(__dirname, "output")
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
-// const render = require("./src/page-template.js");
-const render = require("./lib/htmlRenderer");
+const render = require("./Develop/lib/htmlRenderer");
 
 const teamMembers = [];
 const idArray = [];
@@ -245,7 +244,8 @@ function appMenu() {
     if (!fs.existsSync(OUTPUT_DIR)) {
       fs.mkdirSync(OUTPUT_DIR)
     }
-    fs.writeFileSync(distPath, render(teamMembers), "utf-8");
+    fs.writeFileSync(outputPath, render(teamMembers), "utf-8");
+
    
   }
 
@@ -253,4 +253,5 @@ function appMenu() {
 
 }
 
+  
 appMenu();
